@@ -42,7 +42,7 @@ public class ListaLigada{
             this.cabeca = n;
         }
         while(memoria.getProximo()!= null){
-            if(cont == indice){
+            if(cont == indice -1){
                 n.SetProximo(memoria.getProximo());
                 memoria.SetProximo(n);
                 break;
