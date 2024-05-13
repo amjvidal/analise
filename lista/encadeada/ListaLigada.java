@@ -8,6 +8,7 @@ public class ListaLigada{
         cabeca = null;
     }
 
+    // metodo para imprimir a lista inteira
     public void print(){
         No n = cabeca;
         while(n != null){
@@ -16,6 +17,7 @@ public class ListaLigada{
         }
     }
 
+    // metodo para adicionar os Nos no fim da lista
     public void adicionar(int valor){
         No n = new No(valor);
 
@@ -33,6 +35,8 @@ public class ListaLigada{
         ultimo.SetProximo(n);
     }
 
+
+    // Metodo para adicionar o No em indice especificado
     public void inserePosicao (int valor, int indice){
         No n = new No(valor);
         No memoria = this.cabeca;
@@ -54,6 +58,8 @@ public class ListaLigada{
         }
     }
 
+
+    // Metodo para remover Nos com valor especifico
     public void remove (int valor) {
         No n = this.cabeca;
         No anterior = null;

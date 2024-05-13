@@ -114,8 +114,8 @@ class Lista {
 
 
 }
-
-
+// tentei com o fs.readfile mas não consegui e estou usando o readline agr, ambos do node.js
+// Função com algum probleminha, ela lê o arquivo, mas não de jeito correto, solucionarei em breve
 function lerArquivo(path) {
     const lista = new Lista();
 
@@ -148,7 +148,7 @@ function lerArquivo(path) {
             const comando = operacao[0];
             const args = operacao.slice(1);
 
-            // Executa as operações na lista
+            // Executa as operações especificas na lista
             if (comando === 'P') {
                 lista.imprimir();
             } else if (comando === 'A') {
@@ -164,8 +164,6 @@ function lerArquivo(path) {
 
     rl.on('close', () => {
         console.log('Fim da leitura do arquivo');
-        // Aqui você pode adicionar qualquer lógica que deseja executar
-        // quando terminar de ler o arquivo
     });
 }
     
