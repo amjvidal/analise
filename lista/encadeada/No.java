@@ -18,7 +18,7 @@ public class No {
         return this.proximo;
     }
 
-    public void SetProximo(No proximo){
+    public void setProximo(No proximo){
         this.proximo = proximo;
     }
 

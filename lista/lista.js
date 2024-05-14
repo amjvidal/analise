@@ -114,26 +114,31 @@ class Lista {
 
 
 }
-// tentei com o fs.readfile mas não consegui e estou usando o readline agr, ambos do node.js
-// Função com algum probleminha, ela lê o arquivo, mas não de jeito correto, solucionarei em breve
-function lerArquivo(path) {
-    const lista = new Lista();
-
+// função para ler os arquivos txt e modificar a lista de acordo com as operações.
+function lerArquivo(path, lista) {
+    
+    // criando a interface para leitura
     const rl = readline.createInterface({
         input: fs.createReadStream(path),
         crlfDelay: Infinity
     });
 
     let primeiraLinha = true;
-
+    
+    //confirmação para a leitura do arquivo
     console.log('Arquivo sendo lido');
 
+    //leitura do arquivo
     rl.on('line', (linha) => {
-        console.log('Nova linha lida:', linha);
+        // para a primeira linha como não tem uma ação especificada, o codigo salva em um array
+        // todos os numeros e adiciona 1 por 1 na lista.
+        console.log('Nova linha lida:');
         if (primeiraLinha) {
             console.log('Primeira linha do arquivo');
 
-            const numeros = linha.trim().split(' ').map(Number);
+            var numeros = []
+
+            numeros = linha.trim().split(' ').map(Number);
             console.log('Números sendo adicionados:', numeros);
 
             // Adiciona os números à lista
@@ -141,8 +146,15 @@ function lerArquivo(path) {
                 lista.inserirFim(numero);
             }
 
+            // primeira linha false, o codigo verifica se tem operações demarcadas nas linhas
             primeiraLinha = false;
         } else {
+
+            // salvando as operações linha por linha em arrays e separando em array
+            // operacao é toda a linha separada em array
+            // comando é a String de operação. ex: A, P e R
+            // em args é guardado o valor do No e se tiver na linha o Indice.
+
             console.log('Operação:', linha);
             const operacao = linha.trim().split(' ');
             const comando = operacao[0];
@@ -152,6 +164,10 @@ function lerArquivo(path) {
             if (comando === 'P') {
                 lista.imprimir();
             } else if (comando === 'A') {
+
+                // args[0] vai puxar o valor do No no array args
+                // args[1] vai puxar o indice no No no array args
+
                 const valor = parseInt(args[0]);
                 const indice = parseInt(args[1]);
                 lista.inserirIndice(valor, indice);
@@ -162,10 +178,15 @@ function lerArquivo(path) {
         }
     });
 
+    // fechando a interface de leitura do arquivo
+
     rl.on('close', () => {
         console.log('Fim da leitura do arquivo');
     });
 }
     
+const lista = new Lista();
 
-lerArquivo("rsc\\arqnovo.txt")
+lerArquivo("rsc\\arqnovo.txt", lista);
+
+lista.imprimir();

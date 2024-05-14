@@ -13,30 +13,41 @@ public class Main{
             //lendo o arquivo
             BufferedReader reader = new BufferedReader(new FileReader(path));
             String linha;
-            int contagemLinhas = 0;
+            int contagemLinhas = 1;
             System.out.println("Arquivo sendo Lido");
             while ((linha = reader.readLine()) != null) {
-                contagemLinhas++;
                 if (contagemLinhas == 1) { 
                     String[] valores = linha.split(" ");
-                    for (String valor : valores) {
-                        lista.adicionar(Integer.parseInt(valor)); 
+                    System.out.println("Lista sem alterações: ");
+                    for(String valor1 : valores){
+                        System.out.print(valor1 + ",");
+                        
                     }
-                } else if (contagemLinhas >= 3) { 
+                    System.out.println();
+
+                    for (String valor : valores) {
+                        if(!valor.isEmpty()){
+                            lista.adicionar(Integer.parseInt(valor)); 
+                        }
+                    }
+                } else if (contagemLinhas > 1) { 
                     String[] partes = linha.split(" ");
                     char acao = partes[0].charAt(0);
                     if (acao == 'P') {
-                       System.out.println("Lista: " + lista.toString()); 
-                        break; 
+                        System.out.println("Operação: " + linha);
+                        lista.print();
                     } else if (acao == 'A') {
+                        System.out.println("Operação: " + linha);
                         int numero = Integer.parseInt(partes[1]);
                         int posicao = Integer.parseInt(partes[2]);
                         lista.inserePosicao(numero, posicao); 
                     } else if (acao == 'R'){
+                        System.out.println("Operação: " + linha);
                         int posicao = Integer.parseInt(partes[1]);
                         lista.remove(posicao); 
                     }                       
                 }
+                contagemLinhas++;
             }
             reader.close();
         } catch (IOException e) {

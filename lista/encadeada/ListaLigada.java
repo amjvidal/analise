@@ -12,7 +12,7 @@ public class ListaLigada{
     public void print(){
         No n = cabeca;
         while(n != null){
-            System.out.println(n.getValor() + " ");
+            System.out.println(n.getValor());
             n = n.getProximo();
         }
     }
@@ -32,7 +32,7 @@ public class ListaLigada{
             ultimo = ultimo.getProximo();
         }
 
-        ultimo.SetProximo(n);
+        ultimo.setProximo(n);
     }
 
 
@@ -42,13 +42,14 @@ public class ListaLigada{
         No memoria = this.cabeca;
         int cont = 0;
         if (indice == 0){
-            n.SetProximo(this.cabeca);
+            n.setProximo(this.cabeca);
             this.cabeca = n;
+            return;
         }
         while(memoria.getProximo()!= null){
             if(cont == indice -1){
-                n.SetProximo(memoria.getProximo());
-                memoria.SetProximo(n);
+                n.setProximo(memoria.getProximo());
+                memoria.setProximo(n);
                 break;
             }
             else{
@@ -65,7 +66,7 @@ public class ListaLigada{
         No anterior = null;
         while (n!=null){
             if(n.getValor() == valor){
-                anterior.SetProximo(n.getProximo());
+                anterior.setProximo(n.getProximo());
                 return;
             }
             else{
