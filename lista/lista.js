@@ -136,7 +136,7 @@ function lerArquivo(path, lista) {
         if (primeiraLinha) {
             console.log('Primeira linha do arquivo');
 
-            var numeros = []
+            var numeros = [];
 
             numeros = linha.trim().split(' ').map(Number);
             console.log('Números sendo adicionados:', numeros);
@@ -148,7 +148,8 @@ function lerArquivo(path, lista) {
 
             // primeira linha false, o codigo verifica se tem operações demarcadas nas linhas
             primeiraLinha = false;
-        } else {
+        } 
+        else {
 
             // salvando as operações linha por linha em arrays e separando em array
             // operacao é toda a linha separada em array
